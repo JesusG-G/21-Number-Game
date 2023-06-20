@@ -47,32 +47,31 @@ def start_game_two_or_more_players(first_player, second_player,numbers_list):
         
 
 if __name__ == "__main__":
-    answer = False
+    finish_loop = False
     numbers_entered = []
-    while answer != True:
-        players = input("How many players want to play? >")
-        if not players.isnumeric():
-            print("Please enter a number.")
-        elif int(players) == 0:
-            print("The number of playes need to be more than zero")
-        elif int(players) > 2:
-            print("Please the maximun of players are 2")
-        else:
-            number_of_players = int(players) 
-            answer = True
+    while finish_loop != True:
+        print("Enter 'C' if you want to play versus the computer")
+        print("Enter 'P' if you want to play versus another person")
+        selectd_option = input("Select a option>").upper()
+        match selectd_option:
+            case 'C':
+                print("versus computer")
+                finish_loop = True
+            case 'P':
+                print("versus another player")
+                print("Two playes")
+                name_player_1 = input("Please player one enter your name: ")
+                name_player_2 = input("Please player two enter your name: ")
+                turns = random.randrange(1,3)
+                if turns == 1:
+                    start_game_two_or_more_players(name_player_1,name_player_2,numbers_entered)                 
+                else:
+                    start_game_two_or_more_players(name_player_2,name_player_1,numbers_entered)
+                finish_loop = True
+            case _:
+                print("Please enter one of the valid option")
 
-    if number_of_players == 1:
-        print("vs Computer")
-    else:
-        print("Two or more playes")
-        name_player_1 = input("Please player one enter your name: ")
-        name_player_2 = input("Please player two enter your name: ")
-        turns = random.randrange(1,number_of_players+1)
-        if turns == 1:
-            start_game_two_or_more_players(name_player_1,name_player_2,numbers_entered)
-                                 
-        else:
-            start_game_two_or_more_players(name_player_2,name_player_1,numbers_entered)
+        
         
         
 
