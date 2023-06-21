@@ -74,11 +74,31 @@ def start_game_vs_computer(player_name, chance, numbers_list):
             insert_number(amount_of_numbers_to_enter,numbers_list)
             checked_list = check_order(numbers_list)
             last_number = numbers_list[-1] 
-            print("Turn of computer.")
             computer_insert_number(numbers_list,last_number, player_name)
+            print("Turn of computer.")
             print("The list before the turn of the computer")
             print(f"{numbers_entered}")
             last_number = numbers_entered[-1]
+    else:
+        for i in range(1,5):
+            numbers_entered.append(i) 
+        last_number = numbers_entered[-1]
+        while True:
+            computer_insert_number(numbers_list,last_number, player_name)
+            print("Turn of computer.")
+            print("The list before the turn of the computer")
+            print(f"{numbers_entered}")
+            last_number = numbers_entered[-1]
+            if checked_list == True:
+                lose_message(player_name)
+            elif last_number == 20:
+                lose_message(player_name)
+            print(f"Turn of {player_name}")
+            amount_of_numbers_to_enter = int(input("How much numbers do you want to enter?>"))
+            insert_number(amount_of_numbers_to_enter,numbers_list)
+            checked_list = check_order(numbers_list)
+            last_number = numbers_list[-1] 
+           
 
 if __name__ == "__main__":
     finish_loop = False
@@ -93,8 +113,11 @@ if __name__ == "__main__":
                 print("Enter 'F' if you want to play first.")
                 print("Enter 'S' if you want to play second.")
                 chance = input("Select a option>").upper()
-                start_game_vs_computer(player_name,chance,numbers_entered)
-                finish_loop = True
+                if chance == 'F' or chance == 'S':
+                    start_game_vs_computer(player_name,chance,numbers_entered)
+                    finish_loop = True
+                else:
+                    print("Please enter a valid option")
             case 'P':
                 name_player_1 = input("Please player one enter your name: ")
                 name_player_2 = input("Please player two enter your name: ")
